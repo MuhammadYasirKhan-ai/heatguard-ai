@@ -1,0 +1,10 @@
+{
+  "functions": {
+    "api/fortyguard.js": { "memory": 128, "maxDuration": 15 },
+    "api/anthropic.js":  { "memory": 128, "maxDuration": 30 }
+  },
+  "rewrites": [
+    { "source": "/api/fortyguard", "destination": "/api/fortyguard.js" },
+    { "source": "/api/anthropic",  "destination": "/api/anthropic.js"  }
+  ]
+}
