@@ -41,8 +41,8 @@ Go to **Project → Settings → Environment Variables** and add:
 
 | Variable | Value |
 |---|---|
-| `FORTYGUARD_API_KEY` | Your FortyGuard API key |
-| `ANTHROPIC_API_KEY` | Your Anthropic API key |
+| `FORTYGUARD_API_KEY` | FortyGuard API key |
+| `ANTHROPIC_API_KEY` | Anthropic API key |
 
 ### 3. Redeploy
 ```bash
