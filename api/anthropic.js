@@ -40,7 +40,7 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         model: 'claude-sonnet-4-6',
-        max_tokens: 500,
+        max_tokens: 800,   // Increased from 500 — prevents cut-off responses
         messages: [{ role: 'user', content: prompt.trim() }],
       }),
     });
@@ -49,11 +49,14 @@ export default async function handler(req, res) {
 
     if (!upstream.ok) {
       Object.entries(CORS_HEADERS).forEach(([k, v]) => res.setHeader(k, v));
-      return res.status(upstream.status).json({ error: true, message: data?.error?.message ?? 'Anthropic error' });
+      return res.status(upstream.status).json({
+        error: true,
+        message: data?.error?.message ?? `Anthropic error ${upstream.status}`,
+      });
     }
 
-    const text = data.content
-      ?.filter(b => b.type === 'text')
+    const text = (data.content ?? [])
+      .filter(b => b.type === 'text')
       .map(b => b.text)
       .join('') ?? '';
 
